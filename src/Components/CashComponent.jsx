@@ -84,6 +84,12 @@ function CashComponent() {
 
   const onClick = () => {
     setIsButtonClicked(true);
+
+    if (cash <= 0 || bill <= 0) {
+      setMessage("Value should be greater then 0");
+      return;
+    }
+
     let remainingChange = cash - bill;
 
     if (remainingChange === 0) {
@@ -126,6 +132,9 @@ function CashComponent() {
             onChange={(e) => setBill(e.target.value)}
             type="number"
             variant="outlined"
+            InputProps={{
+              inputProps: { min: 0 },
+            }}
           />
         </div>
 
@@ -136,6 +145,9 @@ function CashComponent() {
             onChange={(e) => setCash(e.target.value)}
             type="number"
             variant="outlined"
+            InputProps={{
+              inputProps: { min: 0 },
+            }}
           />
         </div>
 
